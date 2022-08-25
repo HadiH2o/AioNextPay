@@ -1,6 +1,6 @@
 # AioNextPay
 
-This is an async library for requesting to the https://nextpay.org purchase gate away.<br>
+This is an async library for requesting to the https://nextpay.org purchase gateway.<br>
 <h3>How to install : </h3>
 <code>pip install aionextpay</code>
 <h3>How to use : </h3>
