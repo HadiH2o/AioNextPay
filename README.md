@@ -10,6 +10,9 @@ First import <code>NextPay</code> from <code>aionextpay</code><br><br>
 Then you need to create an instance from NextPay class and pass it's parameters to it  in an async function<br><br>
 
 <pre>
+from aionextpay import NextPay
+
+
 token = 'your_nextpay_token'
 callback_uri = 'yourdomain.ir/verify'
 
@@ -20,6 +23,9 @@ async def func():
 
 Then you need to use purchase function
 <pre>
+from aionextpay import NextPay
+
+
 token = 'your_nextpay_token'
 callback_uri = 'yourdomain.ir/verify'
 
@@ -34,6 +40,9 @@ If every thing goes good you get a trans_id from that function.<br>
 p.s : you have to create a gateway payment with that trans_id and give it to the client like this:<br>
 
 <pre>
+from aionextpay import NextPay
+
+
 token = 'your_nextpay_token'
 callback_uri = 'yourdomain.ir/verify'
 
