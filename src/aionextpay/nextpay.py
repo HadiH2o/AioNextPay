@@ -66,8 +66,8 @@ class NextPay:
 
         data.add_field('callback_uri', self.callback_uri)
 
-        async with ClientSession(headers=self.headers) as aiohttp:
-            async with aiohttp.post(url=url, data=data) as respond:
+        async with ClientSession(headers=self.headers) as session:
+            async with session.post(url=url, data=data) as respond:
                 result = await respond.json()
                 # if page created successfully
                 if result['code'] == -1:
@@ -112,8 +112,8 @@ class NextPay:
         if currency in ['IRT', 'IRR']:
             data.add_field("currency", currency)
 
-        async with ClientSession(headers=self.headers) as aiohttp:
-            async with aiohttp.post(url=url, data=data) as respond:
+        async with ClientSession(headers=self.headers) as session:
+            async with session.post(url=url, data=data) as respond:
                 result = await respond.json()
 
                 if result['code'] == 0:
@@ -147,8 +147,8 @@ class NextPay:
         data.add_field('trans_id', trans_id)
         data.add_field('refund_request', 'yes_money_back')
 
-        async with ClientSession(headers=self.headers) as aiohttp:
-            async with aiohttp.post(url=url, data=data) as respond:
+        async with ClientSession(headers=self.headers) as session:
+            async with session.post(url=url, data=data) as respond:
                 result = await respond.json()
                 if result['code'] == -90:
                     return True
