@@ -2,7 +2,7 @@ from typing import Literal, Union
 
 from aiohttp import FormData, ClientSession
 
-from ..aionextpay import exceptions
+import exceptions
 
 
 class NextPay:
