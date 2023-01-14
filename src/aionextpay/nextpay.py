@@ -33,7 +33,7 @@ class NextPay:
             self,
             order_id: str,
             **kwargs
-    ):
+    ) -> str:
         """
         Send purchase request to NextPay api.\n
         Params:
@@ -91,7 +91,7 @@ class NextPay:
             self,
             trans_id: str,
             currency: Literal['IRT', 'IRR'] = None
-    ) -> bool:
+    ) -> dict:
         """
             Verifying the user purchase.\n
             Params:
@@ -117,7 +117,7 @@ class NextPay:
                 result = await respond.json()
 
                 if result['code'] == 0:
-                    return True
+                    return result
 
                 elif result['code'] == -2:
                     raise exceptions.PurchaseDeclined("Purchase declined by user or bank")
@@ -137,7 +137,7 @@ class NextPay:
                 else:
                     raise exceptions.UnknownHandled(f"Un-handled error code : {result['code']}")
 
-    async def refund(self, trans_id) -> bool:
+    async def refund(self, trans_id) -> dict:
         url = "https://nextpay.org/nx/gateway/verify"
 
         # creating data for url
@@ -151,7 +151,7 @@ class NextPay:
             async with session.post(url=url, data=data) as respond:
                 result = await respond.json()
                 if result['code'] == -90:
-                    return True
+                    return result
 
                 elif result['code'] in [-91, -92]:
                     raise exceptions.RefundFailed("Refund failed")
