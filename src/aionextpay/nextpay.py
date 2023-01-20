@@ -1,3 +1,4 @@
+import json
 from typing import Literal, Union
 
 from aiohttp import FormData, ClientSession
@@ -60,7 +61,10 @@ class NextPay:
 
         for key, value in kwargs.items():
             if key in ['currency', 'phone', 'custom_json_fields', 'payer_name', 'payer_desc', 'auto_verify', 'allowed_card']:
-                data.add_field(key, value)
+                if key == 'custom_json_fields':
+                    data.add_field(key, json.dumps(value))
+                else:
+                    data.add_field(key, value)
             else:
                 raise exceptions.InvalidKey(f"key {key} is invalid for NextPay.org")
 
